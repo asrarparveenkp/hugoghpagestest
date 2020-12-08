@@ -1,0 +1,63 @@
+{{ if (not .Params.no_dropdown) }}
+    <script>window.location.href = "{{ .Site.BaseURL }}";</script>
+{{ else }}
+    <!DOCTYPE html>
+    <html>
+        {{- partial "head.html" . -}}
+        <body>
+            {{- partial "notSupported.html" . -}}
+            <div class="contentWrapper">
+            {{- partial "navigation.html" . -}}
+                {{ if (ne .Params.sectionTags nil) }}
+                    <section class="header-image" style='background-image:url({{ if (isset .Params "headerImage") }}{{ .Params.headerImage }}{{ else }}{{ "Assets/Images/Boilerplate/defaultStrawberries.png" | absURL }}{{ end }})'>
+                        <div class="outer-container">
+                            <div class="inner-container">
+                                <h1>{{ .Title }}</h1>
+                                {{ if (isset .Params "description") }}
+                                    <p>{{ .Params.description }}</p>
+                                {{ end }}
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="main-content">
+                        <div class="user-content fullwidth forcedwidth">
+                            <section class="topics">
+                                <div class="container-category flex">
+                                    {{ $category := .Title }}
+                                    {{ $categoryPages := where .Site.Pages "Section" $category }}
+                                    {{ range .Params.sectionTags }}
+                                        <div class="grid">
+                                            <div class="topics-wrapper border">
+                                                <h3>{{ title . }}</h3> <!-- Sets to tag name  -->
+                                                <ul class="topics-list">
+                                                    {{ $currentTag := . }}
+                                                    {{ range $categoryPages }}
+                                                        {{ if and (isset .Params "tags") (ne .Kind "section") }}
+                                                            {{ if (in .Params.tags $currentTag)}}
+                                                                <li><a href="{{ .RelPermalink | lower }}">{{ .Title }}</a></li>
+                                                            {{ end }}
+                                                        {{ end }}
+                                                    {{ end }}
+                                                </ul>
+                                            </div>
+                                            <ul class="meta"></ul>
+                                        </div>
+                                    {{ end }}
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                {{ else }}
+                    <div class="main-content">
+                        <h1>{{ .Title }}</h1>
+                        <div class="user-content fullwidth">
+                            {{- block "main" . }}{{- end }}
+                        </div>
+                    </div>
+                {{ end }}
+            {{- partial "footer.html" . -}}
+            </div>
+        </body>
+    </html>
+{{ end }}

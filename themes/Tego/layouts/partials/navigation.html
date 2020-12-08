@@ -1,0 +1,76 @@
+<div class="nav-overlay"></div>
+<div class="header-wrapper">
+    {{ if (isset .Site.Menus "utilities") }}
+        <div class="utility_bar">
+            <div class="top-container">
+                <ul>
+                    {{ range .Site.Menus.utilities }}
+                        <li><a href="{{ .URL }}"><span>{{ .Name }}</span></a></li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    {{ end }}
+    <div class="nav-header">
+        <div class="global-header">
+            <div class="topwrapper">
+
+                <div class="branding">
+                    <a href="{{.Site.BaseURL}}"><img src="{{ "/Assets/Images/Tesco.svg" | relURL }}" alt="Tesco"><span>{{ .Site.Title }}</span></a>
+                </div>
+
+                <div class="searchwrapper">
+                    <ul class="quickactions">
+                      {{ if not .Params.dark }} 
+                      <li id="darkMode" class="noText"><a href="#"><i class="fas fa-adjust circle-icon"></i></a></li>
+                      {{ end }}
+                      {{ if and ( .IsPage ) ( not .Params.NoEdit ) }}
+                        <li><a href="{{ .Site.Params.baseEditURL }}{{ replace .File.Path "\\" "/" }} "><i class="fas fa-pencil-ruler circle-icon"></i><span>Edit Page</span></a></li>
+                      {{ end }}
+                      <li><a href="#" onclick="CopyLink()"><i class="fas fa-bookmark circle-icon copy"></i><span>Copy URL</span></a></li>
+                    </ul>
+                    <form class="search_box" autocomplete="off">
+                        <input type="search" autocomplete="off" placeholder="Search" onfocus="this.value=''" onblur="this.value=''" onkeyup="if (event.keyCode == 27 ) this.value=''" id="search-input">
+                        <ul id="results-container" tabindex="0"></ul>
+                    </form>
+                </div>
+
+                <div class="mainwrapper">
+                    <nav role="navigation" id="navigation">
+                        <ul class="mainnav">
+                            <li><a {{ if eq (len .Section) 0 }} class="active" {{ end }} href="{{.Site.BaseURL}}">Home</a></li>
+                            {{ $currentSection := lower .CurrentSection }}
+                            {{ $mainSection := lower .Section }}
+
+                            {{ range .Site.Sections }}
+                              {{ $sectionPages := where .Site.Pages "Section" .Section}}
+                              {{ if and (gt (len $sectionPages) 1) (not .Params.no_dropdown)}}
+                                <li class="has-dropdown">
+                                  <a class="flyout {{ if in (lower $currentSection) (lower .Section) }}active{{ end }}" href="#">{{.Title}} <i class="fas fa-angle-down"></i></a>
+                                  <ul class="dropdown">
+                                    {{ range $sectionPages }}
+                                      {{ if ne .Kind "section" }}
+                                        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                                      {{ end }}
+                                    {{ end }}
+
+                                    {{ if isset .Site.Params "additional_links" }}
+                                     {{ $additionalLink := index .Site.Params.additional_links.sections .Title}}
+                                      {{ range $additionalLink }}
+                                        <li><a target="_blank" href="{{ .Permalink }}">{{ .Title }}</a></li>
+                                      {{ end }}
+                                    {{ end }}
+                                  </ul>
+                                </li>
+                              {{ else }}
+                                <li><a {{ if and ( ne (len $mainSection) 0 ) (in (lower $mainSection) (lower .Section)) }} class="active" {{ end }} href="{{ .Permalink }}">{{ .Title }}</a></li>
+                              {{ end }}
+                            {{ end }}
+                            <li><a target="_blank" href="https://github.dev.global.tesco.org/pages/TescoSharedPlatform/terraform/">Infrastructure as Code</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "notSupported.html" . -}}
+        <div class="contentWrapper">
+            {{- partial "navigation.html" . -}}
+            <div class="fullwidth enforcedheight dashboard">
+                {{ .Content }}
+            </div>
+            {{- partial "footer.html" . -}}
+        </div>
+    </body>
+</html>

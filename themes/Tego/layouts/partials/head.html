@@ -1,0 +1,99 @@
+<head>
+
+    <title>{{ .Page.Title }} - Tesco {{ .Site.Title }} </title>
+    <meta charset="UTF-8">
+    <meta name="assetURL" content='{{ "Assets/" | absURL}}'>
+
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="{{ "Assets/CSS/Navigation.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="{{ "Assets/CSS/Standardised.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="{{ "Assets/CSS/Misc.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="{{ "Assets/CSS/Footer.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="{{ "Assets/CSS/Section.css" | relURL }}" type="text/css" />
+    
+    {{ if (isset .Page.Params "dark") }}
+        {{ if .Page.Params.dark }}
+        <link rel="stylesheet" href="{{ "Assets/CSS/darkOverride.css" | relURL }}" type="text/css" />
+        {{ end }}
+    {{ end }}
+
+    <!-- Shortcode CSS
+    Utilised for add-on features. -->
+    <link rel="stylesheet" href="{{ "Assets/CSS/shortcodes/notice.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="{{ "Assets/CSS/shortcodes/tabbed-code.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="{{ "Assets/CSS/shortcodes/diagram.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="{{ "Assets/CSS/Third-Party/slick.css" | relURL }}" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    <link rel="stylesheet" href="/Assets/CSS/Third-Party/obsidian-hljs.css" />
+
+    <!-- Shortcode JavaScript
+    Utilised for add-on features. -->
+    <script src="/Assets/JavaScript/Third-Party/SVGPanZoom.lib.js"></script>
+    <script src="/Assets/JavaScript/Third-Party/highlight.pack.js"></script>
+    <script src="/Assets/JavaScript/Third-Party/terraform.hl.js"></script>
+
+    <!-- Third Party Assets -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" type="text/css"/>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <script src="/Assets/JavaScript/SearchHandler.js"></script>
+    <script src="/Assets/JavaScript/Third-Party/CopyToClipboard.js"></script>
+    <script src="/Assets/JavaScript/Third-Party/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.11.1/tocbot.min.js"></script>
+
+    {{ if (isset .Page.Params "charts") }}
+        {{ if .Page.Params.charts }}
+        <script src="/Assets/JavaScript/Third-Party/Chart.min.js"></script>
+        <script src="/Assets/JavaScript/Third-Party/Chart.plug.js"></script>
+        {{ end }}
+    {{ end }}
+
+    <!-- Hacks; to be re-visited -->
+    <script>
+        if (localStorage.getItem("Tego-DarkMode") != null) {$("head").append('<link id="darkCSS" rel="stylesheet" href="/Assets/CSS/darkOverride.css" type="text/css" />')}
+    </script>
+
+    <!-- Viewports -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{{ "Assets/Images/Favicons/favicon.ico" | relURL }}" />
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ "Assets/Images/Favicons/apple-icon-57x57.png" | relURL }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ "Assets/Images/Favicons/apple-icon-72x72.png" | relURL }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ "Assets/Images/Favicons/apple-icon-114x114.png" | relURL }}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ "Assets/Images/Favicons/apple-icon-144x144.png" | relURL }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ "Assets/Images/Favicons/apple-icon-180x180.png" | relURL }}">
+    <link rel="apple-touch-icon" href="{{ "Assets/Images/Favicons/apple-icon-57x57.png" | relURL }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ "Assets/Images/Favicons/favicon-16x16.png" | relURL }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "Assets/Images/Favicons/favicon-32x32.png" | relURL }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ "Assets/Images/Favicons/favicon-96x96.png" | relURL }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ "Assets/Images/Favicons/android-icon-192x192.png" | relURL }}">
+
+    <!-- Dynamic Overrides -->
+    <link rel="stylesheet" href="{{ "Assets/CSS/Dynamic.css" | relURL }}" type="text/css" />
+
+    <!-- Google Analytics Integration -->
+    {{ if (ne .Site.Params.googleAnalytics "" )}}
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.Params.googleAnalytics }}"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '{{ .Site.Params.googleAnalytics }}');
+        </script>
+    {{ end }}
+
+    <!-- Syntax Highlighting (Third Party) -->
+    <script>
+        hljs.registerLanguage('terraform', window.hljsDefineTerraform);
+        hljs.initHighlightingOnLoad()
+    </script>
+
+    <!-- SVG Pan Zoom Init -->
+    <script>
+        function loadSVGPZ() {
+            svgPanZoom('.pannableSVG', {controlIconsEnabled: true})
+        }
+    </script>
+</head>

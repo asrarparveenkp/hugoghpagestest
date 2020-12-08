@@ -1,4 +1,83 @@
-baseURL = "http://example.org/"
+baseURL = "https://github.dev.global.tesco.org/pages/CoreDevOpsTools/DevTools"
 languageCode = "en-us"
-title = "My New Hugo Site"
-theme = "ananke"
+title = "DevTools"
+theme = "Tego"
+pluralizelisttitles = "false"
+canonifyURLs = "true"
+disableKinds=["taxonomy", "taxonomyTerm"]
+
+[outputs]
+  home = ["HTML", "JSON"]
+  page = ["HTML"]
+
+[markup]
+    [markup.goldmark.renderer]
+        unsafe= true
+    [markup.tableOfContents]
+        startLevel = 1
+
+[params]
+  dateFormat = "January 2, 2006 (15:04)"
+  baseEditURL = "https://github.dev.global.tesco.org/CoreDevOpsTools/DevTools/website/edit/master/content/"
+  Teams = "https://teams.microsoft.com/l/channel/19%3aa3cf2763618f43ddbed2566401a5b09c%40thread.skype/Azure%2520User%2520Group?groupId=e7278815-6a55-422b-83e8-12b2d9e45aba&tenantId=3928808b-8a46-426b-8f87-051a36bb2f91"
+  googleAnalytics = "UA-165251214-1"
+
+    # This section is utilised for configuring per-section additional links that should be shown, in the dropdown (based on pre-existing section title).
+    # This uses the name of the section as a key.
+
+    [[params.additional_links.sections.Networking]]
+        Title = "External Hub IPs"
+        Permalink = "https://github.dev.global.tesco.org/CoreDevOpsTools/DevTools/azure-hub-whitelists"
+    [[params.additional_links.sections.Networking]]
+        Title = "Palo Alto EDLs"
+        Permalink = "https://github.dev.global.tesco.org/CoreDevOpsTools/DevTools/edl"
+    [[params.additional_links.sections.Networking]]
+        Title = "Architectural Diagrams"
+        Permalink = "https://github.dev.global.tesco.org/CoreDevOpsTools/DevTools/Wiki/wiki/Networking-Architectural-Diagrams"
+#   [[params.bufferblock]]
+#        Name = "Teams Chat"
+#        Image = "../Images/Boilerplate/teamsChatStock.png"
+#        Description = "Got a question? Eager to find out other people's experiences? Join the Team's chat dedicated to all things AWS, Azure and TSP!"
+#        Action = "Join Chat"
+#        Action_URL = "https://teams.microsoft.com/l/channel/19%3aa3cf2763618f43ddbed2566401a5b09c%40thread.skype/Azure%2520User%2520Group?groupId=e7278815-6a55-422b-83e8-12b2d9e45aba&tenantId=3928808b-8a46-426b-8f87-051a36bb2f91"
+#
+#    [[params.bufferblock]]
+#        Name = "Tesco Matrix"
+#        Image = "../Images/Boilerplate/blueprintStock.jpg"
+#        Description = "Components, standards and APIs oh my! Focus your efforts on Tesco approved technology!"
+#        Action = "View Matrix"
+#        Action_URL = "https://tesco.sharepoint.com/sites/Tescopedia/Matrix.aspx"
+#
+#    [[params.bufferblock]]
+#        Name = "CPE Portal"
+#        Image = "../Images/Boilerplate/cpeLogoStock.png"
+#        Description = "Your one stop shop for requesting, viewing and controlling your Tesco Azure environment. Have a peek!"
+#        Action = "Access Portal"
+#        Action_URL = "https://portal.cpe.tescocloud.com/"
+#
+#    [[params.bufferblock]]
+#        Name = "Shared Platform"
+#        Image = "../Images/Boilerplate/hashicorpTerraformStock.png"
+#        Description = "Re-usable IaC modules and patterns; helping teams accelerate their capabilities in Azure, in a standardised fashion."
+#        Action = "View Docs"
+#        Action_URL = "https://github.dev.global.tesco.org/pages/TescoSharedPlatform/terraform/"
+
+    # Utilised for configuring the buffer-block found at the end of each page with navigation; this is there as a hack to offset 
+    # the position detection, to ensure the side bar correctly expands.
+
+#[menu]
+#    [[menu.utilities]]
+#        name = "Contributing"
+#        url = "/contributing/"
+#
+#    [[menu.utilities]]
+#        name = "Status"
+#        url = "https://tesco-azure.statuspage.io/"
+#
+#    [[menu.utilities]]
+#        name = "Cloud Portal"
+#        url = "https://portal.cpe.tescocloud.com/"
+#
+#    [[menu.utilities]]
+#        name = "Subnetting"
+#        url  = "https://portal.cpe.tescocloud.com/subnetCalc"

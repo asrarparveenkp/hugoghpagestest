@@ -1,0 +1,117 @@
+#body .nav-tabs {
+position: unset;
+width: unset;
+}
+
+.tab-content > .tab-pane {
+    display: none;
+}
+
+.tab-content > .active, .tab-content > .activeCode {
+    display: block;
+}
+
+.nav-tabs {
+    background-color: #272822;
+    border: 2px solid #454545;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-tabs > li {
+    float: left;
+}
+
+.nav-tabs > li > a {
+    display: block;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.tab-pane {
+    color: white;
+    display: block;
+    padding: 9.5px;
+    margin: 0px 0px 10px;
+    line-height: 1;
+    background-color: #272822;
+    border: 2px solid #454545;
+    border-top: 0px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.tab-pane::-webkit-scrollbar {
+    width: 5px; 
+}
+
+.tab-pane::-webkit-scrollbar-track {
+    border-radius: 20px;
+    background-color: #80808054;
+}
+
+.tab-pane::-webkit-scrollbar-thumb {
+    background-color: #00529fbb;
+    border-radius: 20px;
+}
+
+.copyCode {
+    display: inline-block; 
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    border: 1px solid #8080808e; 
+    font-size: 13px; 
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 70px;
+    height: 20px;
+}
+
+.copyCode .actionPrompt {
+    display: inherit;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.copyCode .actionPrompt svg {
+    margin-right: 5px;
+}
+
+.copyCode a, .copyCode {
+    color: white !important;
+}
+
+.copyCode .successPrompt {
+    display: block;
+    text-align: center;
+    height: 100%;
+    background-color: #128712a3;
+}
+
+.code-tabs {
+    margin: 10px 0px 0px 0px;
+    position: relative;
+}
+
+.tab-pane pre {
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+  border-left: 0px;
+  color: white;
+}
+
+.tab-pane code {
+  background-color: rgba(0,0,0,0);
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li > a:hover, .copyCode:hover {
+    background-color: #454545 !important;
+    color: white;
+}

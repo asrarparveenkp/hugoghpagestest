@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    {{- partial "head.html" . -}}
+    <body>
+        {{- partial "notSupported.html" . -}}
+        <div class="contentWrapper">
+            {{- partial "navigation.html" . -}}
+            <div class="main-content">
+                {{ if $.Param "hide_sidebar" }}
+                <div class="user-content fullwidth">
+                    {{- block "main" . }}{{- end }}
+                </div>
+                {{ else }}
+                {{- partial "sidebar.html" . -}}
+                <div class="user-content">
+                    <div class="articleTitle">
+                        {{ $readTime := math.Floor ( div (mul (div (countwords .Content) 220.0) 60) 60) }}
+                        <h1 class="ignoreToC">{{ .Title }}</h1>
+                        <ul class="articleStats">
+                            {{ if .Lastmod }}
+                                <li id="lastUpdate">{{ .Lastmod.Format "02/01/2006" }}</li>
+                            {{ end }}
+                            <li id="timeToRead">{{ $readTime }} minute{{ if gt $readTime 1 }}s{{ end }} to read</li>
+                            {{ if .GitInfo }}
+                                <li id="commitTag">Commit: <span id="gitMessage">{{ .GitInfo.Subject }}</span></li>
+                            {{ end }}
+                        </ul>
+                    </div>
+                    {{- block "main" . }}{{- end }}
+                </div>
+                {{ end }}
+            </div>
+
+            {{- partial "bufferBlock.html" . -}}
+
+            {{- partial "footer.html" . -}}
+        </div>
+    </body>
+</html>

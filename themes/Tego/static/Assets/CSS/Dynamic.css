@@ -1,0 +1,60 @@
+/* Dynamic Themeing
+Based on the size of the overall display
+*/
+@media only screen and (max-width: 1555px) {
+    .user-content {
+        width: 71%;
+    }
+
+    .main-content {
+        width: 85%;
+    }
+
+    .bufferBlock {
+        width: 87%;
+    }
+
+    .main-content > h1 {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .footer-content {
+        max-width: 85%;
+    }
+
+    .footer-content .footer-small {
+        display: none;
+    }
+
+    .mainwrapper {
+        margin-left: 70px;
+        width: calc(100% - 140px);
+    }
+
+}
+
+@media only screen and (max-width: 1550px) {
+    .sidebar {
+        display: none;
+    }
+
+    .bufferBlock {
+        display: none;
+    }
+
+    .user-content {
+        width: 100%;
+    }
+
+}
+
+/* Revisit to add screen; not compatible for mobile */
+@media only screen and (max-width: 1000px) {
+    .notSupported {
+        display: table;
+    }
+    .contentWrapper {
+        display: none;
+    }
+}
